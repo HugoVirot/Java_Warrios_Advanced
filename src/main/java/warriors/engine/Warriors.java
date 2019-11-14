@@ -1,5 +1,6 @@
 package warriors.engine;
 
+import io.vavr.Tuple2;
 import io.vavr.collection.HashMap;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
@@ -18,6 +19,8 @@ import warriors.model.MapModel;
 import warriors.model.SpellCase;
 import warriors.model.Warrior;
 import warriors.model.WeaponCase;
+
+import java.util.ArrayList;
 
 public class Warriors implements WarriorsAPI {
 
@@ -117,5 +120,15 @@ public class Warriors implements WarriorsAPI {
 	public Option<GameState> nextTurn(GameId gameId) {
 		return this.games.get(gameId)
 			.map(Game::nextTurn);
+	}
+
+	@Override
+	public Option<Game> show(GameId gameId) {
+		return this.games.get(gameId);
+	}
+
+	@Override
+	public Iterable<Game> listGames() {
+		return this.games.values();
 	}
 }
